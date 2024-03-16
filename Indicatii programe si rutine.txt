@@ -1,0 +1,110 @@
+Lista desemnata pentru programelor principale si a rutinelor implementate
+
+#Function Blackman2
+	Call : [bool,coef,Delta_pr,Delta_sr]=Blackman2(M,omega_p,omega_s,omega_c)
+	Verifica daca fereastra blackman respecta conditiile de toleranta impuse
+
+#Function Boxcar2
+	Call : [bool,coef,Delta_pr,Delta_sr]=Boxcar2(M,omega_p,omega_s,omega_c)
+	Verifica daca fereastra boxcar respecta conditiile de toleranta impuse
+
+#Function Cebasev
+	Call : [bool,coef,Delta_pr,Delta_sr]=Cebasev(M,omega_p,omega_s,omega_c)
+	Verifica daca fereastra Cebyshev respecta conditiile de toleranta impuse
+
+#Function faza
+	Call : faza(M,freq_c,omega_p,omega_s,omega_c)
+	Aceasta rutina calculeaza faza pentru fereastra Cebyshev si ploteaza faza
+	impreuna cu liniile verticale pe pozitiile omega_p , omega_s  si omega_c
+
+#Script Faza_1_PR
+	Rezolvarea primei faze a proiectului
+
+#Script Faza_2_PR
+	Rezolvarea celei de a doua faze a proiectului
+
+#Function Faza_3_PR
+	Call : [Delta_pr,Delta_sr]=Faza_3_PR(h,omega_p,omega_s)
+	Aceasta rutina calculeaza tolerantele pe care le admite filtrul
+	introdus
+
+#Script Faza_3_PR_b
+	Rezolvarea celei de a treia faze a proiectului
+
+#Script Faza_4_PR
+	Rezolvarea celei de a patra faze a proiectului
+
+#Function faza_orice
+	Call : faza_orice(M,w,omega_p,omega_s,omega_c)
+	Aceasta rutina calculeaza faza pentru orice tip de fereastra  si ploteaza faza
+        impreuna cu liniile verticale pe pozitiile omega_p , omega_s  si omega_c
+
+#Function Hamming2
+	Call : [bool,coef,Delta_pr,Delta_sr]=Hamming2(M,omega_p,omega_s,omega_c)
+	Verifica daca fereastra Hamming respecta conditiile de toleranta impuse
+
+#Function Hanning2
+	Call : [bool,coef,Delta_pr,Delta_sr]=Hanning2(M,omega_p,omega_s,omega_c)
+	Verifica daca fereastra Hanning respecta conditiile de toleranta impuse
+
+#Function Kaiser2
+	Call : [bool,coef,Delta_pr,Delta_sr]=Kaiser2(M,omega_p,omega_s,omega_c)
+	Verifica daca fereastra Kaiser respecta conditiile de toleranta impuse
+
+#Function Lanczos
+	Call : [w]=Lanczos(M,L)
+	Calculeaza fereatras Lanczos
+
+#Function Lanczos2
+	Call : [bool,coef,Delta_pr,Delta_sr]=Lanczos2(M,omega_p,omega_s,omega_c)
+	Verifica daca fereastra Lanczos respecta conditiile de toleranta impuse
+
+#Function plotez
+	Call : [Delta,Delta_pr,Delta_sr]=plotez(M,freq_c,omega_p,omega_s,omega_c)
+	Aceasta rutina calculeaza spectrul linear pentru fereastra Cebyshev si
+        ploteaza spectrul impreuna cu liniile verticale pe pozitiile omega_p , omega_s  si omega_c
+        si liniile orizontale pentru 1+-Delta_p si Delta_s si returneaza
+	tolerantele Delta_pr si Delta_sr impreuna cu suma lor pentru a le utiliza
+        in main
+
+#Function plotez_db
+	Call : [Delta,Delta_pr,Delta_sr]=plotez_db(M,freq_c,omega_p,omega_s,omega_c)
+	Aceasta rutina calculeaza spectrul in dB pentru fereastra Cebyshev si
+	ploteaza spectrul impreuna cu liniile verticale pe pozitiile omega_p , omega_s  si omega_c
+ 	si liniile orizontale pentru 1+-Delta_p si Delta_s si returneaza
+ 	tolerantele Delta_pr si Delta_sr impreuna cu suma lor pentru a le utiliza
+ 	in main
+
+#Function plotez_orice
+	Call : [Delta,Delta_pr,Delta_sr]=plotez_orice(M,w,freq_c,omega_p,omega_s,omega_c)
+	Aceasta rutina calculeaza spectrul in dB pentru orice fereastra si
+	ploteaza spectrul impreuna cu liniile verticale pe pozitiile omega_p , omega_s  si omega_c
+ 	si liniile orizontale pentru 1+-Delta_p si Delta_s si returneaza
+	tolerantele Delta_pr si Delta_sr impreuna cu suma lor pentru a le utiliza
+ 	in main
+
+#Function pondere
+	Call : pondere(M,freq_c)
+	Aceasta rutina calculeaza raspunsul la impuls al filtrului cebisev si o
+ 	ploteaza
+
+#Function pondere_orice
+	Call : pondere_orice(M,w,omega_c)
+	Aceasta rutina calculeaza raspunsul la impuls al oricarui filtru  si o
+        ploteaza
+
+#Script test/1/2/3/4/5
+	Script de testare algoritmi, parametrii, comparari etc.
+
+#Function Triang2
+	Call : [bool,coef,Delta_pr,Delta_sr]=Triang2(M,omega_p,omega_s,omega_c)
+	Verifica daca fereastra Triang respecta conditiile de toleranta impuse
+
+#Function Tuckey2
+	Call : [bool,coef,Delta_pr,Delta_sr]=Tuckey2(M,omega_p,omega_s,omega_c)
+	Verifica daca fereastra Tuckey respecta conditiile de toleranta impuse
+
+
+	
+
+

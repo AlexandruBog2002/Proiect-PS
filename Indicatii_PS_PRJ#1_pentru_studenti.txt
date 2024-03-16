@@ -1,0 +1,326 @@
+~~~~~~~~~
+!ATENTIE! - Comentariile cerute in cadrul unor puncte ale fazelor de proiect 
+            TREBUIE SA FIE ORIGINALE SI NU COPIATE DE LA ALTI COLEGI SAU DE PE INTERNET. 
+          - Se vor acorda bile negre in caz de similitudini flagrante. La fiecare punct 
+            unde se constata aceste similitudini, se acorda CATE O BILA NEAGRA. Asadar, 
+            NU SE ACORDA O SINGURA BILA NEAGRA PE PROIECT, SE POT ACUMULA MAI MULTE IN FINAL.
+          - La atingerea pragului de 3 bile negre in total (inclusiv cele obtinute din alte 
+            activitati decat proiectul), se incrementeaza indicatorul SRNO si studentul respectiv 
+            trebuie sa se prezinte la verificarea finala, indiferent de punctajul obtinut pana 
+            atunci, daca doreste sa promoveze diciplina PS. De asemenea, la verificare, trebuie sa 
+            indeplineasca pragul de examen. In plus, indicatorul SRNO ramane pozitiv pana in 
+            sesiunea de restante din toamna, inclusiv. El se reseteaza (in caz de nepromovare) 
+            doar la inceputul anului universitar urmator.
+          - In documentul proiectului, trebuie precizati parametrii de lucru specifici studentului, 
+            returnati de functiile apelate inainte de abordarea fazelor. Acesti parametri trebuie 
+            afisati si la consola (sau incarcati in "Workspace" din Matlab, pentru a putea fi 
+            verificati). 
+~~~~~~~~~
+
+FAZA 1
+~~~~~~
+  . Se va initia apelul: 
+
+    >> [M,r,beta,L,alfa] = PS_PRJ_1_Faza_1(ng,ns) ; 
+
+    unde ng = numarul grupei, iar ns este numarul de ordine al studentului in grupa sa 
+    (vezi fisierul <PS_PRJ_1_[ng,ns].xls>).
+    (Toate functiile apelabile descrise in acest fisier sunt disponibile pe Moodle,
+    in subdirectorul 12 si saptamana #12, sub forma de executabile de tip .MLX.)
+  . Argumentele de iesire (parametrii de lucru ai studentului) sunt:
+     > M = durata ferestrelor (aceeasi pentru toate cele 9 ferestre, dar diferita 
+           de la un student la altul); intreg intre 16 si 45; 
+     > r = atenuarea lobilor secundari/paraziti ai spectrului ferestrei lui Cebisev; 
+           variaza intre 80 dB si 100 dB; 
+     > beta = inaltimea primului lob secundar/parazit al spectrului ferestrei lui Kaiser;
+              variaza intre 2 dB si 10 dB;
+     > L = deschiderea ferestrei Lanczos; intreg intre 2 si 7;
+     > alfa = procentul partii constante din cadrul ferestrei lui Tuckey; 
+              variaza intre 20% si 80%.
+  ~~~~~~~~~
+  !ATENTIE! Memorati parametrii returnati de aceasta functie, deoarece ii veti folosi si in faza 
+            urmatoare a proiectului.
+  ~~~~~~~~~
+  a. Pentru a rezolva acest punct, se pot utiliza functiile aferente din Matlab, acolo unde exista. 
+     Ferestrele care nu beneficiaza de functii din biblioteca Matlab se vor genera prin implementarea 
+     formulelor de definitie aferente. 
+     Graficele cerute se vor afisa in urmatoarele conditii: 
+      * Toate ferestrele au durata M obtinuta mai sus. 
+      * Ferestrele care nu au parametri de configurare se vor trasa ca atare.
+      * In cazul ferestrei lui Cebisev, se vor trasa 3 grafice: unul pentru r obtinut mai sus, 
+        altul pentru (r-5) [dB] si altul pentru (r+5) [dB]. Atenuarea folosita va fi afisata 
+        pe graficul aferent (folosind functiile TEXT/GTEXT, SPRINTF).
+      * In cazul ferestrei lui Kaiser, se vor trasa 3 grafice: unul pentru beta obtinut mai sus, 
+        altul pentru (beta-1) [dB] si altul pentru (beta+1) [dB]. Atenuarea folosita va fi afisata 
+        pe graficul aferent. 
+      * In cazul ferestrei lui Lanczos, se vor trasa 3 grafice: unul pentru L obtinut mai sus, 
+        altul pentru (L-1) si altul pentru (L+1). Deschiderea L a ferestrei va fi afisata pe graficul 
+        aferent.
+      * In cazul ferestrei Tuckey, se vor trasa 3 grafice: unul pentru alfa obtinut mai sus, 
+        altul pentru (alfa-15) [%] si altul pentru (alfa+15) [%]. Procentajul folosit va fi afisat 
+        pe graficul aferent. 
+     Graficele punctului a. se vor grupa in 3 figuri (construite folosind functia SUBPLOT):
+      * Figura 1. O matrice 2x2 ilustrand cele 4 ferestre fara parametri, exceptand fereastra dreptunghiulara, 
+                  care NU se va trasa (ca fiind evidenta). 
+      * Figura 2. O matrice 2x3 ilustrand cele 6 versiuni ale ferestrelor Cebisev (3 pe prima linie) 
+                  si Kaiser (3 pe linia a doua). 
+      * Figura 3. O matrice 2x3 ilustrand cele 6 versiuni ale ferestrelor Lanczos (3 pe prima linie) 
+                  si Tuckey (3 pe linia a doua). 
+  b. La acest punct, spectrele se pot obtine cu ajutorul functiei FREQZ. Rezolutia de reprezentare 
+     in frecventa va fi de 5000 de puncte (aceeasi pentru toti studentii). 
+     ~~~~~~~~~
+     !ATENTIE! Nu lasati functia FREQZ sa ruleze cu rezolutie implicita, deoarece aceasta este 
+               foarte slaba, de numai 50 de puncte.
+     ~~~~~~~~~
+     Graficele se vor grupa in 4 figuri (folosind tot functia SUBPLOT):
+      * Figura 4. Spectrul ferestrei dreptunghiulare (un singur grafic).
+      * Figura 5. Spectrele celor 4 ferestre fara parametri (de forma Figurii 1).
+      * Figura 6. Spectrele celor 6 versiuni ale ferestrelor Cebisev si Kaiser (de forma Figurii 2).
+      * Figura 7. Spectrele celor 6 versiuni ale ferestrelor Lanczos si Tuckey (de forma Figurii 3).
+     ~~~~~~~~~
+     !ATENTIE! - Nu afisati fiecare grafic cerut in figuri separate, deoarece acestea ocupa spatiu 
+                 si devine dificila vizualizarea comparativa a lor, prelungind inacceptabil de mult 
+                 durata de evaluare a temei de proiect. Folositi functia SUBPLOT!
+               - De asemenea, spectrele trebuie afisate in dB si cu axa frecventelor normalizate 
+                 scalata corect. 
+               - Toate graficele trebuie sa contina maxim de informatii pentru utilizator
+                 (titluri, nume de axe, axe scalate corect, parametri de configurare, daca e cazul). 
+               - Se vor scadea puncte la evaluare pentru nerespectarea acestor conditii!
+     ~~~~~~~~~
+
+FAZA 2, punctul a
+~~~~~~~~~~~~~~~~~
+  . Se va initia apelul: 
+
+    >> omega_c = PS_PRJ_1_Faza_2a(ng,ns) ; 
+
+    unde ng = numarul grupei, iar ns este numarul de ordine al studentului in grupa sa 
+    (vezi fisierul <PS_PRJ_1_[ng,ns].xls>).
+  . Parametrul returnat, omega_c, este pulsatia de taiere a filtrului ce trebuie proiectat 
+    (un numar intre 0 si pi, dar nu egal cu 0 si nici cu pi). 
+  . Ordinul filtrului, ca si ferestrele utilizate se vor prelua de la faza precedenta. 
+  . Pentru proiectarea filtrelor, apelul tipic al functiei FIR1 este:
+     >> h = fir1(M,freq_c) ; 
+    unde M+1 este ordinul filtrului, iar freq_c este un numar intre 0 si 1 indicand frecventa 
+    normalizata de taiere a filtrului. Evident, freq_c=omega_c/pi. Fereastra implicita utilizata 
+    de functie este cea a lui Hamming. Pentru a preciza o alta fereastra, se va apela functia cu 
+    un al treilea argument de intrare, care precizeaza vectorul de valori ale ferestrei dorite. 
+  ~~~~~~~~~
+  !ATENTIE! - Daca functia FIR1 este apelata cu argumentul M, se va obtine un 
+              raspuns la impuls de lungime (M+1) si nu M! Prin urmare, ea se va apela cu 
+              argumentul (M-1) in loc de M, pentru a obtine un filtru de ordin M. 
+  ~~~~~~~~~
+  . Pentru fiecare fereastra utilizata, se vor afisa caracteristicile filtrului proiectat
+    (spectru si faza), care se obtin cu ajutorul functiei FREQZ. Rezolutia de reprezentare 
+    in frecventa va fi de K=5000 de puncte (aceeasi pentru toti studentii). 
+  . Graficele aferente se afiseaza in 6 figuri (construite folosind functia SUBPLOT):
+     * Figura 8. O matrice 1x5 ilustrand secventele pondere ale filtrelor obtinute pentru fiecare 
+                 fereastra neparametrica. 
+     * Figura 9. O matrice 2x3 ilustrand secventele pondere ale filtrelor obtinute pentru ferestrele 
+                 Cebisev (pe prima linie) si Kaiser (pe a doua linie).
+     * Figura 10. O matrice 2x3 ilustrand secventele pondere ale filtrelor obtinute pentru ferestrele 
+                  Lanczos (pe prima linie) si Tuckey (pe a doua linie).
+     * Figura 11. O matrice 2x5 ilustrand spectrele filtrelor obtinute pentru fiecare fereastra 
+                  ne-parametrica (inclusiv cea dreptunghiulara) pe prima linie si fazele aferente 
+                  pe linia a doua. 
+     * Figura 12. O matrice 3x4 ilustrand spectrele filtrelor obtinute pentru ferestrele Cebisev
+                  si Kaiser pe coloanele 1, 3 (respectiv), cu fazele aferente pe coloanele 2,4. 
+                  (Asadar, pe coloane: [Spectre_Cebisev | Faze_Cebisev | Spectre_Kaiser | Faze_Kaiser].)
+     * Figura 13. O matrice 3x4 ilustrand spectrele filtrelor obtinute pentru ferestrele Lanczos
+                  si Tuckey pe coloanele 1, 3 (respectiv), cu fazele aferente pe coloanele 2,4. 
+                  (Asadar, pe coloane: [Spectre_Lanczos | Faze_Lanczos | Spectre_Tuckey | Faze_Tuckey].)
+  ~~~~~~~~~
+  !ATENTIE! - Graficele secventelor pondere se vor trasa cu functia STEM (deoarece ele sunt semnale 
+              discrete). Celelalte grafice se traseaza cu functia PLOT (deoarece raspunsurile in frecventa 
+              sunt semnale continue). 
+            - Toate graficele trebuie sa contina maxim de informatii pentru utilizator
+              (titluri, nume de axe, axe scalate corect, parametri de configurare, daca e cazul). 
+            - Numele ferestrei utilizate pentru proiectarea filtrului se poate preciza in titluri. 
+              In cazul utilizarii aceleiasi ferestre cu parametri diferiti, trebuie 
+              indicata si valoarea parametrului aferent, alaturi de numele ferestrei. De exemplu, 
+              se poate scrie "Cebisev [r = 75.4321 dB]" in titlu. Nu folositi titluri 
+              lungi, deoarece ferestrele figurii pot fi de dimensiuni mici, fapt care poate produce 
+              trunchierea titlurilor. 
+            - Se vor scadea puncte la evaluare pentru nerespectarea acestor conditii!
+  ~~~~~~~~~
+  . La finalul comentariilor, dupa ce analizati comparativ caracteristicile filtrelor, propuneti o 
+    clasificare subiectiva a ferestrelor, incepand cu cea mai buna. Clasificarea va avea 17 pozitii, 
+    deoarece va include cate 3 ferestre parametrice. Apoi, oferiti un clasament al celor 9 ferestre 
+    de semnal (incepand cu cea mai buna), pe baza clasificarii anterioare. Corespunde acest clasament 
+    cu acela din solutia pe care ati furnizat-o la quiz-ul propus dupa prezentarea temei de proiect? 
+    Incercati sa justificati cat puteti de bine clasificarea si clasamentul. Nu uitati ca, la quiz, 
+    criteriul de clasificare a fost altul, care se referea strict caracteristicile ferestrelor. 
+    Acum, clasificarea trebuie sa se refere la performantele filtrului proiectat. 
+  ~~~~~~~~~
+  !ATENTIE! - Clasificarea celor 17 ferestre este importanta, deoarece de ea depind rezultatele 
+              de la punctele si fazele urmatoare ale proiectului. 
+  ~~~~~~~~~
+
+FAZA 2, punctul b
+~~~~~~~~~~~~~~~~~
+  . Se vor pastra parametrii M si omega_c deja obtinuti anterior. 
+  . Prima fereastra utilizata va fi cea din fruntea clasamentului efectuat la finele punctului precedent. 
+  . Pentru comparatii, se va opera largirea ferestrei intai la (M+[M/2]), apoi la 2M. 
+  . Se vor relua simularile pentru fereastra numarul 9 din clasificarea (de 17 pozitii) oferita la 
+    punctul precedent.
+  . Graficele aferente se afiseaza in 2 figuri (construite folosind functia SUBPLOT):
+     * Figura 14. O matrice 2x3 ilustrand spectrele filtrelor obtinute pentru fereastra #1 si 
+                  M, (M+[M/2]), respectiv 2M (pe prima linie), plus fazele aferente (pe linia a doua). 
+     * Figura 15. Similara Figurii 14, dar pentru fereastra #9. 
+  . In comentarii, incercati sa comparati cel mai bun filtru al ferestrei #9 cu cel mai slab filtru 
+    al ferestrei #1. 
+
+FAZA 3, punctul a
+~~~~~~~~~~~~~~~~~
+  . Acesta e un pas de proiectare a unei rutine care evalueaza performanta unui filtru proiectat. 
+  . Argumentele de intrare ale rutinei sunt: 
+     > h = raspunsul la impuls al filtrului FIR (un vector de lungime finita);
+     > omega_p = pulsatia de trecere (un numar intre 0 si pi, dar nu egal cu 0 si nici cu pi);
+     > omega_s = pulsatia de stopare (un numar intre omega_p si pi, dar nu egal cu omega_p si nici cu pi).
+  . Argumentele de iesire ale rutinei sunt: 
+     > Delta_pr = toleranta realizata in banda de trecere adica distanta dintre spectrul filtrului proiectat 
+                  si cel al filtrului ideal, in banda de trecere; ambele spectre se exprima liniar, NU in dB; 
+                  rezulta un numar intre 0 si 100, exprimat in procente; 
+     > Delta_sr = toleranta realizata in banda de stopare adica distanta dintre spectrul filtrului proiectat 
+                  si cel al filtrului ideal, in banda de stopare; ambele spectre se exprima liniar, NU in dB; 
+                  rezulta un numar intre 0 si 100, exprimat in procente. 
+  . Cum se calculeaza cele doua tolerante realizate? 
+     * Daca h este secventa pondere a filtrului analizat, se construieste, mai intai, raspunsul in 
+       frecventa H, cu ajutorul functiei FREQZ. Rezolutia va fi de minim 1000 de puncte. Aceasta 
+       inseamna ca H va fi un vector de lungime K, minim 1000. Pentru a calcula tolerantele realizate, 
+       ne intereseaza valorile lui |H| (calculat cu ABS, dar nu in dB!), in banda de trecere [0,omega_p], 
+       respectiv in banda de stopare [omega_s,pi]. Cum se pot determina aceste valori? Tot FREQZ returneaza, 
+       la cerere, axa pulsatiei normalizate esantionate [0,pi], intr-un vector omega de lungime egala cu cea 
+       a lui H, adica egala cu rezolutia K. Din vectorul omega se extrag separat numai pulsatiile cel mult 
+       egale cu omega_p si pulsatiile cel putin egale cu omega_s. Cei doi vectori care rezulta au lungimi mai mici, 
+       sa zicem K_p, respectiv K_s. Ei corespund vectorilor |H|_p, respectiv |H|_s, ce se pot extrage din vectorul 
+       complet |H|. Atentie, cum omega_p nu este egal cu omega_s, vectorul complet mai include si un 
+       al treilea vector, mai scurt, care corespunde benzii de tranzitie. Acest ultim vector nu e de 
+       interes aici. Acum, se poate evalua maximul distantei dintre |H|_p si 1 (pentru a determina Delta_pr),
+       precum si maximul lui |H|_s (pentru a determina Delta_sr).
+
+FAZA 3, punctul b
+~~~~~~~~~~~~~~~~~
+  . Se va initia apelul: 
+
+    >> [omega_p,omega_s,Delta_p] = PS_PRJ_1_Faza_3b(ng,ns) ; 
+
+    unde ng = numarul grupei, iar ns este numarul de ordine al studentului in grupa sa 
+    (vezi fisierul <PS_PRJ_1_[ng,ns].xls>).
+  . Argumentele de iesire (parametrii de lucru ai studentului) sunt:
+     > omega_p = pulsatia de trecere; (un numar intre 0.2*pi si 0.8*pi);
+     > omega_s = pulsatia de stopare (un numar intre omega_p si maxim omega_p+0.15*pi);
+     > Delta_p = toleranta impusa in banda de trecere (un numar intre 2% si 8%).
+  . Toleranta impusa in banda de stopare, Delta_s, se va alege egala cu Delta_p.
+  . Ordinul de referinta al filtrului, M, va fi cel utilizat in prima faza a proiectului. 
+  . Fereastra de lucru va fi cea indicata ca fiind castigatoarea clasificarii de la FAZA #2, punctul a. 
+    (Adica, se va lucra cu fereastra #1 din acea clasificare.)
+  ~~~~~~~~~
+  !ATENTIE! - Pulsatia omega_s este generata pseudo-aleator. De aceea este bine ca, imediat dupa rularea 
+              functiei de mai sus, SA MEMORATI PARAMETRII OBTINUTI. Altfel, parametrul omega_s nu isi va 
+              pastra valoarea, in cazul in care veti face teste preliminare succesive de functionare a 
+              rutinelor. 
+  ~~~~~~~~~
+  . Pentru demonstrarea acestui punct se vor proiecta 9 filtre de tip FIR, cate unul pentru fiecare 
+    combinatie (M,omega_c), unde ordinul M variaza in multimea {M (de referinta), M+[M/2], 2M}, 
+    iar pulsatia de taiere, omega_c, se calculeaza ca (1-w)*omega_p+w*omega_s, unde w ia valori in 
+    multimea {0.25, 0.5, 0.75}. 
+  . Pentru fiecare filtru proiectat, se vor calcula tolerantele realizate, Delta_pr si Delta_sr, 
+    cu ajutorul rutinei de la punctul precedent. 
+  . Se calculeaza raspunsurile in frecventa ale celor 9 filtre, cu ajutorul functiei FREQZ, la 
+    rezolutia K=5000. 
+  . Se vor afisa caracteristicile de frecventa ale filtrelor in ordinea descrescatoare a performantei.
+  ~~~~~~~~~
+  !ATENTIE! - Aprecierea performantei se realizeaza pe baza a doua criterii: ordinul filtrului 
+              (care trebuie sa fie cat mai mic) si suma tolerantelor realizate (care, de asemenea, trebuie 
+              sa fie cat mai mica). In plus, filtrele la care cel putin una dintre tolerantele realizate 
+              este superioara celei impuse vor fi degradate. Dilema cu care va veti confrunta este aceea ca 
+              un criteriu este in opozitie cu celalalt, deci trebuie gasit un compromis intre ele.
+            - Daca toate cele 9 filtre sunt "slabe", adica fiecare are cel putin o toleranta depasita, 
+              se poate inlocui ultima valoare a lui M (adica acel "2M") cu o valoare mai mare, pana cand 
+              se va indeplini criteriul de toleranta. In acest caz, trebuie reluata proiectarea celor 
+              filtre aferente noului ordin (adica pentru cele 3 valori ale pulsatiei de taiere). 
+  ~~~~~~~~~
+  . Graficele aferente se afiseaza in 3 figuri (construite folosind functia SUBPLOT):
+     * Figura 16. O matrice 3x3 ilustrand secventele pondere ale filtrelor, enumerate pe linii, in ordinea 
+                  descrescatoare a performantei. La fiecare grafic se va preciza ordinul filtrului (M). 
+     * Figura 17. O matrice 3x3 ilustrand spectrele filtrelor enumerate pe linii, in ordinea descrescatoare 
+                  a performantei. La fiecare spectru se vor preciza ordinul filtrului (M) si cele doua tolerante 
+                  realizate (Delta_pr, Delta_sr). De asemenea, pe fiecare grafic, se vor mai trasa: 
+                   - 3 linii verticale de culoare rosie: una pentru pulsatia de trecere (omega_p, alta pentru 
+                     pulsatia de taiere (omega_c) si o a treia pentru pulsatia de stopare (omega_s);
+                   - 2 linii orizontale de culoare verde: una la 1+Delta_p si alta la 1-Delta_p, NUMAI pe banda 
+                     de trecere (ca sa se vada clar toleranta impusa); atentie ca Delta_p trebuie impartita 
+                     la 100 si apoi (1+-Delta_p) trebuie transformata in dB, ca sa fie adusa la scala de 
+                     reprezentare a spectrului;
+                   - o linie orizontala de culoare verde la Delta_s, NUMAI pe banda de stopare 
+                     (ca sa se vada clar toleranta impusa); si aici, Delta_s trebuie impartita la 100, 
+                     apoi transformata in dB. 
+     * Figura 18. Similara Figurii 17, dar pentru fazele corespunzatoare ale filtrelor. Aici, nu mai are sens 
+                  sa apara liniile orizontale. 
+ 
+FAZA 4 (concursul de proiectare)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  . Problema de proiectare se va rezolva cu o parte dintre specificatiile de la punctul b. al fazei precedente. 
+    Mai precis, se vor prelua: omega_p, omega_s, Delta_p=Delta_s. 
+  . Trebuie variate: ordinul M, pulsatia de taiere omega_c si tipul de fereastra, plus parametrul de configurare 
+    a ferestrei, daca are. 
+  . De asemenea, se recomanda proiectarea si implementarea unui criteriu de optimizare, care sa indice filtrul 
+    cel mai bun, potrivit observatiilor de la faza precedenta. 
+  . Dupa ce s-au facut suficiente simulari, se vor prezenta primele 3 cele mai bune filtre gasite: 
+    GOLD, SILVER, BRONZE. Prezentarea se va face intr-o figura (construita folosind functia SUBPLOT):
+     * Figura 19. O matrice 3x3 ilustrand spectrele filtrelor GOLD, SILVER, BRONZE pe prima linie,  
+                  fazele aferente pe linia a doua si secventele pondere aferente pe linia a treia. 
+                  La fiecare filtru, se vor preciza parametrii optimali gasiti (ordinul M, pulsatia de taiere 
+                  omega_c si tipul de fereastra, plus parametrul de configurare a ferestrei, daca are). 
+                  De asemenea, pe fiecare grafic de spectru, se vor trasa liniile verticale si orizontale, 
+                  ca in Figura 17. 
+  . In momentul evaluarii acestei faze, trebuie sa puteti furniza indrumatorului de laborator urmatoarele date
+    pentru filtrul GOLD:
+     > raspunsul la impuls, h; 
+     > cele 3 pulsatii caracteristice: omega_p, omega_c, omega_s;
+     > cele doua tolerante impuse: Delta_p, Delta_s. 
+  . Datele se pot salva cu functia SAVE intr-un fisier care va fi transmis indrumatorului. De exemplu, 
+    studentul IONESCU_Ion poate salva datele astfel: 
+
+    >> save IONESCU_Ion_F#4 h omega_p omega_c omega_s Delta_p Delta_s
+
+  . Fisierul IONESCU_Ion_F#4.MAT va fi trimis indrumatorului de laborator.
+  . Indrumatorul de laborator va calcula performanta filtrului cu ajutorul unui criteriu proiectat si implementat 
+    de catre echipa de PS, pentru a putea realiza un clasament corect al filtrelor, raportat la o aceeasi functie cost. 
+  . Cel mai bun filtru din grupa primeste cel mai mare punctaj la aceasta faza. 
+
+FAZA 5 (optionala)
+~~~~~~~~~~~~~~~~~~
+  . Problema propusa in aceasta faza ar trebui sa utilizeze un criteriu de performanta si o metaeuristica 
+    pentru rezolvare (cum ar fi un algoritm genetic), avand in vedere ca spatiul de cautare are pana la 8 dimensiuni. 
+  . Criteriul de performanta ar putea fi construit potrivit constrangerilor specificate in enunt. 
+    Astfel, criteriul ar trebui sa ajunga intr-un punct optimal pentru: 
+     * ordine M cat mai mici; 
+     * benzi de tranzitie realizate cat mai inguste (omega_sr-omega_pr); 
+     * tolerante realizate cat mai mici si inferioare celor impuse (Delta_pr<Delta_p, Delta_sr<Delta_s). 
+  . Se poate modifica definitia criteriului de performanta din FAZA 4, prin adaugarea conditiei de banda 
+    de tranzitie ingusta. 
+  . Cum se pot evalua pulsatiile realizate omega_pr si omega_sr?
+     * Daca h este secventa pondere a filtrului analizat, se construieste, mai intai, raspunsul in 
+       frecventa H, cu ajutorul functiei FREQZ. Rezolutia va fi de minim 1000 de puncte. Aceasta 
+       inseamna ca H va fi un vector de lungime K, minim 1000. Pentru a calcula pulsatiile realizate, 
+       ne intereseaza valorile lui |H| (calculat cu ABS, dar nu in dB!), in doua puncte: ultima de la stanga 
+       pentru care |H|>=(1-Delta_p), notata ad hoc prin |H|_p si prima de la stanga pentru care |H|<=Delta_s, 
+       notata ad hoc prin |H|_s. Este clar ca |H|_p ocupa pozitia K_p in vectorul |H|, iar |H|_s - pozitia K_s.
+       Cum FREQZ returneaza, la cerere, axa pulsatiei normalizate esantionate [0,pi], intr-un vector omega 
+       de lungime egala cu cea a lui H, este evident ca omega_pr=omega(K_p) si omega_sr=omega(K_s). 
+  . Utilizarea unei metaeuristici nu este obligatorie. Ea se poate inlocui prin Metoda Monte-Carlo 
+    (care nu prezinta o strategie de cautare a optimului). Metoda se poate implementa astfel: 
+     > se atribuie valori aleatoare (dar in anumite limite) celor 7-8 variabile de cautare;
+     > se evalueaza criteriul de performanta al filtrului proiectat, pentru fiecare combinatie astfel obtinuta; 
+     > se memoreaza combinatia cu performanta cea mai buna, dupa un anumit numar suficient de mare 
+       de astfel de experimente.
+  . Demonstrarea acestei faze se efectueaza prin afisarea unei figuri (construite folosind functia SUBPLOT):
+     * Figura 20. O matrice 1x3 ilustrand, in ordine, spectrul filtrului optimal propus, faza aferenta si 
+                  secventa pondere. Se vor preciza parametrii optimali principali gasiti: ordinul M, 
+                  tipul de fereastra, plus parametrul de configurare a ferestrei, daca are. De asemenea, 
+                  pe graficul de spectrului, se vor trasa liniile verticale si orizontale, ca in Figura 17, 
+                  conform cu ceilalti parametri optimali gasiti. 
+  . In momentul evaluarii acestei faze, trebuie sa puteti furniza indrumatorului de laborator aceleasi 
+    date ca in faza precedenta, tot intr-un fisier. De exemplu, acest fisier se poate numi IONESCU_Ion_F#5.MAT
